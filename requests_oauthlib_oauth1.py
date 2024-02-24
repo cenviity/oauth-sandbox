@@ -3,6 +3,7 @@
 import urllib.parse as urlparse
 
 from dotenv import dotenv_values
+from requests_cache import CacheMixin
 from requests_oauthlib import OAuth1Session
 
 config = dotenv_values(".env")
@@ -18,16 +19,22 @@ client_key = config.get("CLIENT_KEY")
 client_secret = config.get("CLIENT_SECRET")
 
 
+class CachedOAuth1Session(CacheMixin, OAuth1Session):
+    pass
+
+
 if __name__ == "__main__":
     print(url)
 
-    session = OAuth1Session(
+    session = CachedOAuth1Session(
         client_key=client_key,
         client_secret=client_secret,
         signature_type="auth_header",
+        expire_after=60,
     )
+    # session.cache.clear()
 
-    response = session.get(url)
+    response = session.get(url)  # type: ignore
     print(response, response.reason)
     response.raise_for_status()
 
