@@ -30,7 +30,7 @@ if __name__ == "__main__":
         client_key=client_key,
         client_secret=client_secret,
         signature_type="auth_header",
-        expire_after=60,
+        expire_after=3600,
     )
     # session.cache.clear()
 
