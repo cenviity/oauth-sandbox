@@ -1,0 +1,29 @@
+Traceback (most recent call last):
+  File "/home/cenviity/projects/oauth-sandbox/requests_oauthlib_oauth1.py", line 37, in <module>
+    response = session.get(url)
+               ^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/session.py", line 126, in get
+    return self.request('GET', url, params=params, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/session.py", line 182, in request
+    return super().request(method, url, *args, headers=headers, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests/sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/session.py", line 211, in send
+    self.cache.create_key(request, **kwargs), request, self.settings
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/backends/base.py", line 126, in create_key
+    return key_fn(
+           ^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/cache_keys.py", line 70, in create_key
+    request = normalize_request(request, ignored_parameters)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/cache_keys.py", line 127, in normalize_request
+    norm_request.headers = normalize_headers(norm_request.headers, ignored_parameters)
+                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/cenviity/.cache/pypoetry/virtualenvs/non-package-mode-Pf7_w-zJ-py3.12/lib/python3.12/site-packages/requests_cache/cache_keys.py", line 139, in normalize_headers
+    if ',' in v:
+       ^^^^^^^^
+TypeError: a bytes-like object is required, not 'str'
