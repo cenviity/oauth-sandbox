@@ -1,3 +1,5 @@
+# pyright: reportIncompatibleMethodOverride = false
+
 # https://requests-oauthlib.readthedocs.io/en/latest/oauth1_workflow.html
 
 import urllib.parse as urlparse
