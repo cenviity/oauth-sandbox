@@ -38,11 +38,15 @@ def use_http(url: str) -> str:
 
 if __name__ == "__main__":
     client = BackendApplicationClient(client_id=client_key)
-    oauth = OAuth2Session(client=client)
+    # Don't cache token request
+    session = OAuth2Session(
+        client=client,
+        expire_after=3600,
+    )
 
     try:
         print("Token endpoint:", token_url)
-        token = oauth.fetch_token(  # type: ignore
+        token = session.fetch_token(  # type: ignore
             token_url=token_url,
             client_secret=client_secret,
             timeout=5,
@@ -58,34 +62,25 @@ if __name__ == "__main__":
         # https://oauthlib.readthedocs.io/en/latest/oauth2/security.html
         print("Resorting to insecure HTTP instead of HTTPS!")
         os.environ["OAUTHLIB_INSECURE_TRANSPORT"] = "1"
-        token = oauth.fetch_token(  # type: ignore
+        token = session.fetch_token(  # type: ignore
             token_url=token_url,
             client_secret=client_secret,
         )
         # Unset environment variable once we are done overriding
-        os.unsetenv("OAUTHLIB_INSECURE_TRANSPORT")
+        del os.environ["OAUTHLIB_INSECURE_TRANSPORT"]
         endpoint_url = use_http(endpoint_url)
 
     print(token)
 
-    response = oauth.get(endpoint_url)
+    # Do cache actual requests after getting token
+    session = CachedOAuth2Session(
+        client=client,
+        expire_after=3600,
+    )
+
+    response = session.get(endpoint_url)  # type: ignore
     print(response, response.reason)
     response.raise_for_status()
 
     data = response.json()
     print("Total workflows:", len(data))
-
-    # session = CachedOAuth2Session(
-    #     client_id=client_key,
-    #     client_secret=client_secret,
-    #     signature_type="auth_header",
-    #     expire_after=3600,
-    # )
-    # session.cache.clear()
-
-    # response = session.get(endpoint_url)  # type: ignore
-    # print(response, response.reason)
-    # response.raise_for_status()
-
-    # data = response.json()
-    # print("Total workflows:", len(data))
