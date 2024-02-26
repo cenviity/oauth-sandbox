@@ -10,7 +10,8 @@ from requests_oauthlib import OAuth1Session
 
 config = dotenv_values(".env")
 
-base_url = config.get("API_URL_OAUTH1")
+host_name = config.get("HOST_NAME")
+base_url = f"http://{host_name}/gallery/api/"
 assert base_url, "base_url has no value"
 endpoint = "/admin/v1/workflows"
 
