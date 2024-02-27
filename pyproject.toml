@@ -7,7 +7,7 @@ readme = "README.md"
 python = "^3.12"
 requests-oauthlib = "^1.3.1"
 python-dotenv = "^1.0.1"
-requests-cache = { git = "https://github.com/cenviity/requests-cache.git", branch = "decode-header-bytes-to-strings" }
+requests-cache = { git = "https://github.com/requests-cache/requests-cache.git" }
 
 
 [build-system]

@@ -231,7 +231,7 @@ use-chardet-on-py3 = ["chardet (>=3.0.2,<6)"]
 
 [[package]]
 name = "requests-cache"
-version = "1.2.0"
+version = "1.2.1"
 description = "A persistent cache for python requests"
 optional = false
 python-versions = ">=3.8"
@@ -259,9 +259,9 @@ yaml = ["pyyaml (>=6.0.1)"]
 
 [package.source]
 type = "git"
-url = "https://github.com/cenviity/requests-cache.git"
-reference = "decode-header-bytes-to-strings"
-resolved_reference = "6224e50811ae4d9c68219cab2a9a9296b1f54f3a"
+url = "https://github.com/requests-cache/requests-cache.git"
+reference = "HEAD"
+resolved_reference = "2c143a395d27eebd599f628df03f190175e67818"
 
 [[package]]
 name = "requests-oauthlib"
@@ -326,4 +326,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.12"
-content-hash = "c7a46a0e94cbd632f729c8057cf421287465741303a964b6b2e8c7878d931d76"
+content-hash = "b286ea6b1e044c4e1537a2099f8c8fb198d028f24c0822832a8be1fd0d20d9c7"
