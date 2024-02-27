@@ -33,7 +33,8 @@ class CachedOAuth2Session(CacheMixin, OAuth2Session):
 
 
 def use_http(url: str) -> str:
-    return url.replace("https", "http")
+    protocol = "https://"
+    return "http://" + url.lstrip(protocol)
 
 
 if __name__ == "__main__":
