@@ -39,8 +39,7 @@ def use_http(url: str) -> str:
 
 if __name__ == "__main__":
     client = BackendApplicationClient(client_id=client_key)
-    # Don't cache token request
-    session = OAuth2Session(
+    session = CachedOAuth2Session(
         client=client,
         expire_after=3600,
     )
@@ -73,12 +72,7 @@ if __name__ == "__main__":
 
     print(token)
 
-    # Do cache actual requests after getting token
-    session = CachedOAuth2Session(
-        client=client,
-        expire_after=3600,
-    )
-
+    # session.cache.clear()
     response = session.get(endpoint_url)  # type: ignore
     print(response, response.reason)
     response.raise_for_status()
